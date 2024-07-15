@@ -14,15 +14,19 @@ def process_files(files):
 def create_text_chunks(text):
 
     text_splitter = CharacterTextSplitter(
-        
-            separator='/n'
+            separator='/n',
             chunk_size = 1500,
-            chunck_overlap = 300,
+            chunck_overlap = 280,
             lenght_function = len
-
-        )
+    )
     chunks = text_splitter.split_text(text)
     return chunks
+
+
+
+
+
+
 
 
 
