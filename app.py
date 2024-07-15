@@ -3,21 +3,19 @@ from utills import text,embeddings
 from streamlit_chat import message
 
 
-
 def main():
 
 
     st.set_page_config(page_title='converse com seus arquivos', page_icon=':books')
     user_question = st.text_input("faça uma pergunta")
    
-    if('conversation ' not in st.session_state):
-       st.session_state.conversation = None
+    if('conversation' not in st.session_state):
+        st.session_state.conversation = None
        
 
 
     if(user_question):
-     
-     response = st.session_state.conversation(user_question) ['chat_history'][-1]
+        response = st.session_state.conversation(user_question) ['chat_history'][-1]
      
      
      
@@ -54,6 +52,15 @@ def main():
 
 if __name__ == '_main_':
     main()
+
+
+
+
+
+
+
+
+
 
 
 
