@@ -4,7 +4,7 @@ from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 from langchain.llms import Ollama
 
-def create_vectorstore(chunks):
+def create_vectorstores(chunks):
 
     embeddings = HuggingFaceInstructEmbeddings(model_name ="BAAI/bge-small-en")
     vectorstore = Chroma.from_texts(texts=chunks, embedding=embeddings)
