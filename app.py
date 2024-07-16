@@ -7,10 +7,10 @@ def main():
 
 
     st.set_page_config(page_title='converse com seus arquivos', page_icon=':books')
-    user_question = st.text_input("faça uma pergunta")
+    user_question = st.text_input("faça uma pergunta?")
    
     if('conversation' not in st.session_state):
-        st.session_state.conversation = None
+         st.session_state.conversation = None
        
 
 
@@ -18,49 +18,34 @@ def main():
         response = st.session_state.conversation(user_question) ['chat_history'][-1]
      
      
-     
-    for i, text_message in enumerate(response):
-     if (i % 2 == 0):
 
-        message(text.context, is_user=True, key=str(i) + '_user_')
-     else:
-        message(response.content, is_user = False, key=str(i)+ 'bot')
+        for i, text_message in enumerate(response):
+            if i % 2 == 0:
+                message(text_message.content, is_user=True, key=str(i) + '_user')
+            else:
+                message(text_message.content, is_user = False, key=str(i)+ '_bot')
     
 
-    
     
     
     with st.sidebar:
         st.subheader('seus pdf')
-        pdf_docs = st.file_uploader("carregue seus arquivos")
         
-        
-        
-
-    pdf_docs = st.file_uploader("faça o carregamento de seus pdf", accept_multiple_files= True)
+        pdf_docs = st.file_uploader("faça o carregamento de seus pdf", accept_multiple_files= True)
     
    
-    if st.button('processar'):
-        all_files_text = text.process_files(pdf_docs)
+        if st.button('processar'):
+            all_files_text = text.process_files(pdf_docs)
 
-        chunks = text.create_text_chunks(all_files_text)
+            chunks = text.create_text_chunks(all_files_text)
 
-        vectorstore = embeddings.create_vectorstores(chunks)
+            vectorstore = embeddings.create_vectorstores(chunks)
 
-        st.session_state.conversation = embeddings.create_conversation_chain(vectorstore)
+            st.session_state.conversation = embeddings.create_conversation_chain(vectorstore)
 
 
-if __name__ == '_main_':
+if __name__ == '__main__':
     main()
-
-
-
-
-
-
-
-
-
 
 
 
