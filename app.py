@@ -3,27 +3,25 @@ from utills import text,embeddings
 from streamlit_chat import message
 
 
+
+
 def main():
 
 
     st.set_page_config(page_title='converse com seus arquivos', page_icon=':books')
     user_question = st.text_input("faça uma pergunta?")
    
-    if('conversation' not in st.session_state):
-         st.session_state.conversation = None
-       
+    if 'conversation' not in st.session_state:
+        st.session_state.conversation = None
 
-
-    if(user_question):
-        response = st.session_state.conversation(user_question) ['chat_history'][-1]
-     
-     
-
+    if user_question:
+        response = st.session_state.conversation(user_question)['chat_history']
         for i, text_message in enumerate(response):
             if i % 2 == 0:
                 message(text_message.content, is_user=True, key=str(i) + '_user')
             else:
-                message(text_message.content, is_user = False, key=str(i)+ '_bot')
+                message(text_message.content, is_user=False, key=str(i) + '_bot')
+
     
 
     
@@ -46,11 +44,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-
-
-
-
-
-
