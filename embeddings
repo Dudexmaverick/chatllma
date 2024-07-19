@@ -1,8 +1,9 @@
 from langchain_community.embeddings import HuggingFaceInstructEmbeddings
-from langchain.vectorstores import Chroma
+from langchain.vectorstores.chroma import Chroma
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 from langchain.llms import Ollama
+from langchain.prompts import ChatPromptTemplate
 
 def create_vectorstores(chunks):
 
@@ -10,6 +11,7 @@ def create_vectorstores(chunks):
     vectorstore = Chroma.from_texts(texts=chunks, embedding=embeddings)
 
     return vectorstore
+
 
 def create_conversation_chain(vectorstore):
 
@@ -25,11 +27,8 @@ def create_conversation_chain(vectorstore):
         memory=memory
     )
        
-    prompt = """
-        voce é um nativo brasileiro e voce só fornece resultados em portugues e voce tem conhecimento sobre o que está sendo dito  
-
-    """
+    
 
 
     return conversation_chain
-
+ 
