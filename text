@@ -21,9 +21,3 @@ def create_text_chunks(text):
     )
     chunks = text_splitter.split_text(text)
     return chunks
-
-
-
-
-
-
