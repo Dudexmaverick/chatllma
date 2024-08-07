@@ -15,7 +15,7 @@ def create_vectorstores(chunks):
 
 def create_conversation_chain(vectorstore):
 
-    llm = Ollama(model="llama3",temperature= 0.1) 
+    llm = Ollama(model="gemma2",temperature= 0.1) 
     general_system_template = """
     Você é um assistente virtual, que responde exclusivamente em português sobre os conteúdos dos PDFs armazenados.
     Use o contexto fornecido para responder à pergunta de forma clara e concisa.
